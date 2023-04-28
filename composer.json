@@ -1,0 +1,11 @@
+{
+    "require": {
+        "j0k3r/graby": "^2.4",
+        "php-http/guzzle7-adapter": "^1.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
+}

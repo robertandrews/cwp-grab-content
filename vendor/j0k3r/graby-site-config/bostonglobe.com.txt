@@ -1,0 +1,29 @@
+# NOTE:  If testing this configuration yields bad results, including junk text like "Try BostonGlobe.com today" and "THIS STORY APPEARED IN", please replace the Test URL with a current-day headline link from bostonglobe.com.
+
+title: //article//h1[contains(@class, 'title')]
+author: //div[contains(@class, "byline")]//span[contains(@class, 'author')]
+date: //meta[@name="datePublished"]/@content
+#date: //div[@class="byline"]/p[last()]
+body: //article//h2[contains(@class, 'subheader')] | (//article//div[contains(@class, 'image')])[1] | //article[@id="article-body"]
+
+strip_id_or_class: bgmp-comments
+strip_id_or_class: aside
+strip_id_or_class: promo
+strip_id_or_class: skip-nav
+strip_id_or_class: article-more
+strip_id_or_class: article-bar
+strip_id_or_class: post-comment
+strip_id_or_class: link-related_links_link
+strip_id_or_class: newsletter
+strip_id_or_class: arc_ad
+strip_id_or_class: teads-inread
+strip_id_or_class: continue_button
+
+# remove tiny image (full size not present in element)
+strip: //img[contains(@src, '/20x0/')]
+
+# This removes image captions.
+strip_id_or_class: figure
+
+test_url: https://www.bostonglobe.com/2020/04/07/metro/coronavirus-cases-surge-citys-safety-net-hospital-four-out-10-cases-are-now-related-pandemic/
+test_url: https://www.bostonglobe.com/2021/03/01/metro/charlie-youre-making-big-mistake-experts-criticize-states-monday-reopening/

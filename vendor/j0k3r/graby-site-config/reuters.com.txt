@@ -1,0 +1,31 @@
+# Reuters investigates - https://www.reuters.com/investigates/adoption/#article/part1
+body: //article[contains(concat(' ',normalize-space(@class),' '),' content-view ')]
+strip: //aside
+strip: //header
+strip_id_or_class: article-meta
+strip_id_or_class: related-items
+
+# Reuters news - https://www.reuters.com/world/us/us-attorney-general-garland-confirms-fbi-investigating-trump-2022-08-11/
+body: //div[contains(@class, 'article-body__content__')]
+# body: //div[contains(concat(' ',normalize-space(@class),' '),' paywall-article ')]
+strip: //div[contains(@data-testid, 'gallery')]
+
+body: //div[@id='articleImage' or @id='frame_fd1fade'] | //span[@id='article-text'] | //div[@class='pageNavigation']
+body: //article[@itemtype="http://schema.org/NewsArticle"]
+strip: //li[@class='next']
+strip: //span[@class='articleLocation']
+prune: no
+tidy: no
+
+strip_id_or_class: related-container
+strip_id_or_class: share-in-article-container
+
+strip: //div[contains(@class, 'registration-prompt')]
+
+test_url: https://www.reuters.com/world/us/us-attorney-general-garland-confirms-fbi-investigating-trump-2022-08-11/
+
+test_url: https://www.reuters.com/investigates/special-report/usa-taser-experts/
+test_contains: Among the settlements examined by Reuters
+
+test_url: https://www.reuters.com/investigates/adoption
+test_contains: There is one potential safeguard

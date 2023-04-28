@@ -1,0 +1,8 @@
+author: //meta[@name="DCSext.author"]/@content
+date: //meta[@name="DCSext.articleFirstPublished"]/@content
+title: //meta[@property="og:title"]/@content
+body: //div[@itemprop="articleBody"]
+
+prune: no
+
+test_url: https://www.telegraph.co.uk/news/2021/02/16/covidlockdown-continue-cases-drop-1000-day/

@@ -1,0 +1,55 @@
+# Use AMP version
+# rel="amphtml" doesn't appear in when accessed from a US server
+# single_page_link: //link[@rel="amphtml"]/@href
+single_page_link: concat('https://www.wsj.com/amp/', substring-after(//link[@rel="canonical"]/@href, 'https://www.wsj.com/'))
+if_page_contains: //link[@rel="canonical" and starts-with(@href, 'https://www.wsj.com/articles')]
+body: //main[@id="main"]//div[@itemprop="articleLead" or @itemprop="articleBody" or contains(concat(' ',normalize-space(@class),' '),' articleBody ')]
+
+
+title: //meta[@property="og:title"]/@content
+body: //div[@id='wsj-article-wrap']
+# is this still used?
+body: //div[@id='article_story_body']
+
+author: //meta[@name="author"]/@content
+# for slide show content
+body: //ul[@id='imageSlide']//li[@class='firstSlide']//img | (//div[@class='txt_body']//p)[1]
+date: //meta[@itemprop="dateCreated"]/@content
+
+strip_id_or_class: insetFullBracket
+strip_id_or_class: newsletter-inset
+strip_id_or_class: insettipBox
+#strip_id_or_class: legacyInset
+strip_id_or_class: recipeACShopAndBuyText
+strip_id_or_class: article__byline
+strip_id_or_class: type-InsetMediaVideo
+strip_id_or_class: wsj-ad
+strip_id_or_class: bylineWrap
+strip: //amp-iframe
+strip: //*[@amp-access-hide]
+
+strip: //div[contains(@class, 'insetContent')]//cite
+strip: //*[contains(@style, 'visibility: hidden;')]
+strip: //div[contains(@class, 'insetContent') and not(contains(@class, 'image'))]
+strip: //div[contains(@class, 'carousel')]
+strip: //div[div[contains(@class, 'media-object-rich-text') and h4 and ul[@class="articleList"]]]
+strip: //div[contains(@class, 'snippet')]
+strip: //div[contains(@class, 'media-object-video')]
+
+# see https://elaineou.com/2017/01/19/how-the-twitter-app-bypasses-paywalls/
+#http_header(user-agent): Mozilla/5.0 (iPhone; CPU iPhone OS 10_2 like Mac OS X) AppleWebKit/602.1.32 (KHTML, like Gecko) Mobile/14C92 Twitter for iPhone
+#http_header(referer): https://t.co/T1323aaaa
+
+prune: no
+tidy: no
+
+test_url: http://www.wsj.com/articles/airasia-flight-8501-tail-recovered-1420878809
+test_contains: Saturday evening that the black boxes
+test_url: http://www.wsj.com/news/articles/SB10001424052702304626304579509100018004342
+test_url: http://www.wsj.com/article/SB10001424052970203363504577185322849515102.html
+# slide show
+test_url: http://www.wsj.com/article/SB10001424052970204791104577110550376458164.html
+test_url: https://www.wsj.com/articles/what-the-world-will-speak-in-2115-1420234648
+test_url: https://www.wsj.com/articles/our-amazingly-plastic-brains-1423262095
+test_url: https://www.wsj.com/articles/the-biggest-money-mistakes-we-makedecade-by-decade-1477275181
+test_url: https://www.wsj.com/articles/russia-figure-skating-world-championships-11646143414

@@ -1,0 +1,5 @@
+date: //li[@class='date']
+author: (//h4[@itemprop='name'])[1]
+
+test_url: https://www.taz.de/!5504959/
+test_url: https://taz.de/!5708122

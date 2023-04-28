@@ -1,0 +1,29 @@
+title://div[@class="sl-layout-post"]/h1
+
+body: //div[@id='content' or contains(@class, 'post-content') or contains(@class, 'slide-module') or contains(@class, 'KonaBody')]
+body: //article
+
+strip_id_or_class: post-content-more
+strip_id_or_class: category-wrapper
+strip_id_or_class: inline-newsletter-signup
+strip_id_or_class: notification-prompt-container
+strip_id_or_class: post-content-category
+strip_id_or_class: post-content-more
+strip_id_or_class: post-content-bottom
+strip_id_or_class: the-refresh-player-wrapper
+strip_id_or_class: ad-close-icon
+
+strip: //div[contains(@class, "post-sidebar")]
+strip: //div[@id='related-links']
+strip: //div[@class='related-links-container']
+strip: //p[@class='source']
+author://div[@class="byline"]/a
+date://div[@class="byline"]/span[@class="date"]
+prune: no
+
+single_page_link: //a[contains(text(), 'View as one page')]
+
+strip://*[contains(@class,'sponsored-text')]
+strip: //div[@id='post_footer']
+
+test_url: http://www.businessinsider.com/microsoft-just-put-one-of-its-hardcore-technical-geniuses-on-xbox-2012-1

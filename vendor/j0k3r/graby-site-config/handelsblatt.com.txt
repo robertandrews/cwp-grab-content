@@ -1,0 +1,15 @@
+body: //div[@itemprop="articleBody"]
+author: //meta[@name="vr:author"]/@content
+date: //span[@itemprop="datePublished"]/@content
+title: //meta[@property="og:title"]/@content
+
+# fix image lazy loading
+find_string: data-src="
+replace_string: src="
+
+prune: no
+
+# Fix picture captions
+# wrap_in(small): //div[@class="hcf-caption"]
+test_url: http://www.handelsblatt.com/meinung/gastbeitraege/gastkommentar-zum-emissionshandel-kurskorrekturen-fuehren-zum-kentern/8044326.html
+test_url: https://www.handelsblatt.com/politik/deutschland/flughafen-berlin-brandenburg-vier-milliarden-euro-mehr-neun-jahre-zu-spaet-die-wichtigsten-fakten-zum-start-des-ber/26205178.html

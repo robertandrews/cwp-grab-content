@@ -1,0 +1,33 @@
+# Author: HolgerAusB  |  Version: 2022-03-22
+#
+# to get a source-feed, try to add 'rssfeed.rdf' to the category-URL e.g.
+#    https://www.example.com/hessen/rssfeed.rdf
+#
+#==========================
+
+# strip author box and social media box
+# these boxes sometimes prevented main picure to show up
+strip_id_or_class: idjs-simpletab-nav-item
+strip_id_or_class: idjs-simpletab-content-close
+strip_id_or_class: id-AuthorList
+strip_id_or_class: id-Article-content-item-copyright
+strip_id_or_class: id-DonaldBreadcrumb
+strip_id_or_class: id-StoryElement-timestamp
+strip_id_or_class: id-StoryElement-authors
+strip_id_or_class: id-StoryElement-interactionBar
+strip_id_or_class: id-StoryElement-image-caption
+strip_id_or_class: id-Mediabox-info-el
+strip_id_or_class: id-Recommendation
+strip_id_or_class: id-js-relatedStory
+
+# strip adverts
+strip_id_or_class: id-Article-content-item.id-Article-advert.id-Article-advert--ad3
+strip_id_or_class: id-Article-advert.id-Article-content-item
+strip_id_or_class: id-Article-content-item.id-Article-advert
+strip_id_or_class: id-Article-advert--ad3
+strip_id_or_class: id-Article-advert
+
+tidy: yes
+prune: yes
+
+test_url: https://www.rga.de/lokales/remscheid/corona-in-remscheid-maskenpflicht-im-rathaus-bleibt-91406940.html
