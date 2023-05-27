@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: WP Content Grabber
+ * Plugin Name: CWP Grab Content
  * Plugin URI: http://www.contexthq.com
  * Description: This plugin will grab the content from a URL and add it to your site.
  * Version: 1.0.0
@@ -237,7 +237,19 @@ function package_wp_post($posts_json)
         }
     }
 
-    // Set all the WordPress $post_json wp:term terms matching taxonomy "topic" to the $post_data['topics'] array
+    // Set all the WordPress $post_json wp:term terms matching taxonomy "series" to the $post_data['series'] array
+    if (isset($posts_json->_embedded->{'wp:term'})) {
+        $post_data['series'] = array();
+        foreach ($posts_json->_embedded->{'wp:term'} as $term) {
+            foreach ($term as $series) {
+                if ($series->taxonomy == 'series') {
+                    $post_data['series'][] = $series->name;
+                }
+            }
+        }
+    }
+
+    // Set all the WordPress $post_json wp:term terms matching taxonomy "companies" to the $post_data['companies'] array
     if (isset($posts_json->_embedded->{'wp:term'})) {
         $post_data['companies'] = array();
         foreach ($posts_json->_embedded->{'wp:term'} as $term) {
@@ -339,6 +351,9 @@ function content_grabber_add_post($post_data, $content_url)
 
         wp_set_post_topics($created_post_id, $post_data);
         do_my_log("added topics");
+
+        wp_set_post_series($created_post_id, $post_data);
+        do_my_log("added series");
 
         wp_set_post_companies($created_post_id, $post_data);
         do_my_log("added companies");
@@ -489,6 +504,30 @@ function wp_set_post_topics($created_post_id, $post_data)
                 $term = wp_insert_term($topic, 'topic');
                 echo "term created\n";
                 wp_set_post_terms($created_post_id, $term['term_id'], 'topic', true);
+                echo "term set\n";
+            }
+        }
+    }
+
+}
+
+function wp_set_post_series($created_post_id, $post_data)
+{
+
+    // If there are any series and the taxonomy "series" exists, add them
+    if (isset($post_data['series']) && taxonomy_exists('series')) {
+        foreach ($post_data['series'] as $series) {
+            // If the term exists, set it by ID
+            if (term_exists($series, 'series')) {
+                $term = get_term_by('name', $series, 'series');
+                echo "term exists\n";
+                wp_set_object_terms($created_post_id, $term->term_id, 'series', true);
+                echo "term set\n";
+            } else {
+                // If the term doesn't exist, create it and set it by ID
+                $term = wp_insert_term($series, 'series');
+                echo "term created\n";
+                wp_set_object_terms($created_post_id, $term['term_id'], 'series', true);
                 echo "term set\n";
             }
         }
