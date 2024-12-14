@@ -6,3 +6,5 @@ readability-stuff.php
 redundant.php
 script-test.php
 wordpress-stuff.php
+.DS_Store
+.gitignore

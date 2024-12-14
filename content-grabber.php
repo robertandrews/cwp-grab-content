@@ -2,10 +2,13 @@
 /**
  * Plugin Name: CWP Grab Content
  * Plugin URI: http://www.contexthq.com
- * Description: This plugin will grab the content from a URL and add it to your site.
+ * Description: A plugin to grab content from a URL and add it to your WordPress site. It allows you to quickly fetch and display content from external sources for integration into your WordPress site.
  * Version: 1.0.0
  * Author: Robert Andrews
  * Author URI: http://www.contexthq.com
+ * License: GPL2
+ * Text Domain: cwp-grab-content
+ * Domain Path: /languages
  */
 
 ini_set('max_execution_time', 3000); // 300 seconds = 5 minutes
